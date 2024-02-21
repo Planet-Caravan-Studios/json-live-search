@@ -1,0 +1,77 @@
+---
+
+---
+
+<div class="JsonFeedDisplay">
+	<input type="text" id="searchInput" placeholder="Search by name...">
+    <div class="container" id="cardsContainer"></div>
+</div>
+
+
+<style>
+	.Info{
+		height: 100%;
+	}
+	.titleSection{
+		height: 100px;
+		padding:var(--padding-1);
+		border-bottom: solid var(--border-width) var(--border-color);
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.bodySection{
+		height: calc(100% - 200px);
+		overflow-y: scroll;
+		padding:var(--padding-1);
+	}
+	.authorSection{
+		height: 100px;
+		padding:var(--padding-1);
+		border-top: solid var(--border-width) var(--border-color);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+</style>
+
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', () => {
+	    const data = [
+	        { name: 'John', description: 'Description of Item 1' },
+	        { name: 'Paul', description: 'Description of Item 2' },
+	        { name: 'George', description: 'Description of Item 3' },
+	        { name: 'Ringo', description: 'Description of Item 4' },
+	        
+	        // Add more items as needed
+	    ];
+
+	    const searchInput = document.getElementById('searchInput');
+	    const cardsContainer = document.getElementById('cardsContainer');
+
+	    function createCard(item) {
+	        const card = document.createElement('div');
+	        card.classList.add('card');
+	        card.innerHTML = `<strong>${item.name}</strong><p>${item.description}</p>`;
+	        return card;
+	    }
+
+	    function updateDisplay(filteredData) {
+	        cardsContainer.innerHTML = ''; // Clear current content
+	        filteredData.forEach(item => {
+	            cardsContainer.appendChild(createCard(item));
+	        });
+	    }
+
+	    // Initially display all items
+	    updateDisplay(data);
+
+	    searchInput.addEventListener('input', () => {
+	        const searchText = searchInput.value.toLowerCase();
+	        const filteredData = data.filter(item => item.name.toLowerCase().includes(searchText));
+	        updateDisplay(filteredData);
+	    });
+	});
+
+</script>
