@@ -44,10 +44,10 @@
 <script type="text/javascript">
 	document.addEventListener('DOMContentLoaded', () => {
 	    const data = [
-	        { name: 'John', description: 'Description of Item 1', category: 'Category A', 'sub-category': 'Sub-category 1' },
-            { name: 'Paul', description: 'Description of Item 2', category: 'Category B', 'sub-category': 'Sub-category 2' },
-            { name: 'George', description: 'Description of Item 3', category: 'Category C', 'sub-category': 'Sub-category 3' },
-            { name: 'Ringo', description: 'Description of Item 4', category: 'Category C', 'sub-category': 'Sub-category 4' },
+	        { name: 'John', description: 'Description of Item 1', category: 'cat-A', 'sub-category': 'sub-1' },
+            { name: 'Paul', description: 'Description of Item 2', category: 'cat-B', 'sub-category': 'sub-2' },
+            { name: 'George', description: 'Description of Item 3', category: 'cat-C', 'sub-category': 'sub-3' },
+            { name: 'Ringo', description: 'Description of Item 4', category: 'cat-C', 'sub-category': 'sub-4' },
             // Add more items as needed
 	    ];
 
@@ -58,7 +58,7 @@
 	    function createCard(item) {
             const card = document.createElement('div');
             card.classList.add('card');
-            card.innerHTML = `<strong>${item.name}</strong><p>${item.description}</p><p>Category: ${item.category}, Sub-Category: ${item['sub-category']}</p>`;
+            card.innerHTML = `<strong>${item.name}</strong><p>${item.description}</p><p>Category: ${item.category}, </p><p>Sub-Category: ${item['sub-category']}</p>`;
             return card;
         }
 
