@@ -3,8 +3,13 @@
 ---
 
 <div class="JsonFeedDisplay">
-	<input type="text" id="searchInput" placeholder="Search by name...">
-    <div class="container" id="cardsContainer"></div>
+	<select id="searchField">
+	        <option value="name">Name</option>
+	        <option value="category">Category</option>
+	        <option value="sub-category">Sub-Category</option>
+	    </select>
+	    <input type="text" id="searchInput" placeholder="Search...">
+	    <div class="container" id="cardsContainer"></div>
 </div>
 
 
@@ -39,39 +44,40 @@
 <script type="text/javascript">
 	document.addEventListener('DOMContentLoaded', () => {
 	    const data = [
-	        { name: 'John', description: 'Description of Item 1' },
-	        { name: 'Paul', description: 'Description of Item 2' },
-	        { name: 'George', description: 'Description of Item 3' },
-	        { name: 'Ringo', description: 'Description of Item 4' },
-	        
-	        // Add more items as needed
+	        { name: 'John', description: 'Description of Item 1', category: 'Category A', 'sub-category': 'Sub-category 1' },
+            { name: 'Paul', description: 'Description of Item 2', category: 'Category B', 'sub-category': 'Sub-category 2' },
+            { name: 'George', description: 'Description of Item 3', category: 'Category C', 'sub-category': 'Sub-category 3' },
+            { name: 'Ringo', description: 'Description of Item 4', category: 'Category C', 'sub-category': 'Sub-category 4' },
+            // Add more items as needed
 	    ];
 
 	    const searchInput = document.getElementById('searchInput');
-	    const cardsContainer = document.getElementById('cardsContainer');
+        const cardsContainer = document.getElementById('cardsContainer');
+        const searchField = document.getElementById('searchField');
 
 	    function createCard(item) {
-	        const card = document.createElement('div');
-	        card.classList.add('card');
-	        card.innerHTML = `<strong>${item.name}</strong><p>${item.description}</p>`;
-	        return card;
-	    }
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.innerHTML = `<strong>${item.name}</strong><p>${item.description}</p><p>Category: ${item.category}, Sub-Category: ${item['sub-category']}</p>`;
+            return card;
+        }
 
 	    function updateDisplay(filteredData) {
-	        cardsContainer.innerHTML = ''; // Clear current content
-	        filteredData.forEach(item => {
-	            cardsContainer.appendChild(createCard(item));
-	        });
-	    }
+            cardsContainer.innerHTML = ''; // Clear current content
+            filteredData.forEach(item => {
+                cardsContainer.appendChild(createCard(item));
+            });
+        }
 
-	    // Initially display all items
-	    updateDisplay(data);
+        // Initially display all items
+        updateDisplay(data);
 
-	    searchInput.addEventListener('input', () => {
-	        const searchText = searchInput.value.toLowerCase();
-	        const filteredData = data.filter(item => item.name.toLowerCase().includes(searchText));
-	        updateDisplay(filteredData);
-	    });
+        searchInput.addEventListener('input', () => {
+            const searchText = searchInput.value.toLowerCase();
+            const selectedField = searchField.value;
+            const filteredData = data.filter(item => item[selectedField].toLowerCase().includes(searchText));
+            updateDisplay(filteredData);
+        });
 	});
 
 </script>
