@@ -58,7 +58,12 @@
 	    function createCard(item) {
             const card = document.createElement('div');
             card.classList.add('card');
-            card.innerHTML = `<strong>${item.name}</strong><p>${item.description}</p><p>Category: ${item.category}, </p><p>Sub-Category: ${item['sub-category']}</p>`;
+            card.innerHTML = `
+            	<strong>${item.name}</strong>
+            	<p>${item.description}</p>
+            	<p>Category: ${item.category} </p>
+            	<p>Sub-Category: ${item['sub-category']}</p>
+            `;
             return card;
         }
 
